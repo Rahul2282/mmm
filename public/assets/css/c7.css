@@ -1,0 +1,16 @@
+/* Cyan */
+:root {
+    
+    --bs-theme-color:#167581;
+    
+    --color-Dark: #167581;          /* Dark Cyan */
+    --color-Default: #21afc2;       /* Robin's Egg Blue */
+    --color-light: #94e3ed;         /* Light Blue */
+    --color-super-light: #B8ECF3;   /* Pale Blue */
+    --btn-primary-color: #DBF6F9;   /* Powder Blue */
+
+    --card-bg-gredient: radial-gradient(85.07% 60% at 50% -45.72%, rgba(22, 117, 129, 0.9) 0%, rgba(28, 36, 39, 0) 100%);
+    --login-bg-gredient: radial-gradient(80.07% 75.32% at 50% -45.72%, rgb(22, 117, 129, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+    --porfolio-bg-gredient: radial-gradient(55% 40% at 50% -10%, rgb(148, 227, 237, 0.9) 0%, rgba(28, 36, 39, 0) 100%);
+}
+

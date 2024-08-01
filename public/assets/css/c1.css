@@ -1,0 +1,17 @@
+/* Lavender */
+:root {
+    
+    --bs-theme-color:#7866B0;
+    
+    --color-Dark: #7866B0;          /* Dark Cyan */
+    --color-Default: #9384BF;       /* Robin's Egg Blue */
+    --color-light: #aea3cf;         /* Light Blue */
+    --color-super-light: #C9C2DF;   /* Pale Blue */
+    --btn-primary-color: #E4E0EF;   /* Powder Blue */
+    
+    --card-bg-gredient: radial-gradient(85.07% 60% at 50% -45.72%, rgba(120, 102, 176, 0.9) 0%, rgba(28, 36, 39, 0) 100%);
+    --login-bg-gredient: radial-gradient(80.07% 75.32% at 50% -45.72%, rgb(120, 102, 176, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+    --porfolio-bg-gredient: radial-gradient(55% 40% at 50% -10%, rgb(174, 163, 207, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+
+
+}

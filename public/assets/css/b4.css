@@ -1,0 +1,15 @@
+/* Goldenrod */
+:root {
+    --bs-theme-color:#D48B32;
+    
+    --color-Dark: #D48B32;          /* Dark Cyan */
+    --color-Default: #DCA25B;       /* Robin's Egg Blue */
+    --color-light: #E5B984;         /* Light Blue */
+    --color-super-light: #EED0AD;   /* Pale Blue */
+    --btn-primary-color: #F7E8D6;   /* Powder Blue */
+
+    --card-bg-gredient: radial-gradient(85.07% 60% at 50% -45.72%, rgba(212, 139, 50, 0.9) 0%, rgba(28, 36, 39, 0) 100%);
+    --login-bg-gredient: radial-gradient(80.07% 75.32% at 50% -45.72%, rgb(212, 139, 50, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+    --porfolio-bg-gredient: radial-gradient(55% 40% at 50% -10%, rgb(229, 185, 132, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+
+}

@@ -1,43 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="utf-8" />
+  <!-- <title>Skewb Full Optimize</title> -->
+  <title>MMM Analysis</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <link rel="icon" href="%PUBLIC_URL%/skewb-logomark.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/skewb-logomark.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/assets/images/skewb-logomark.png">
+  <!-- Bootstrap Css -->
+  <link href="%PUBLIC_URL%/assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="%PUBLIC_URL%/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+  <!-- App Css-->
+  <link href="%PUBLIC_URL%/assets/css/app-dark.css" id="app-style" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/bootstrap-dark.min.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" />
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <link href="%PUBLIC_URL%/assets/css/bootstrap-largegrid/bootstrap-largegrid.css" rel="stylesheet" type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/bootstrap-largegrid/bootstrap-largegrid.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="%PUBLIC_URL%/assets/css/custom.css" rel="stylesheet" type="text/css" />
+  
+
+
+
+  <!-- <link href="%PUBLIC_URL%/assets/css/c1.css" rel="stylesheet" type="text/css" /> -->
+  <!-- <link href="%PUBLIC_URL%/assets/css/c3.css" rel="stylesheet" type="text/css" /> -->
+  <!-- <link href="%PUBLIC_URL%/assets/css/c5.css" rel="stylesheet" type="text/css" /> -->
+  <link href="%PUBLIC_URL%/assets/css/c7.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="%PUBLIC_URL%/assets/css/b4.css" rel="stylesheet" type="text/css" /> -->
+
+  <!-- <link href="%PUBLIC_URL%/assets/css/light.css" rel="stylesheet" type="text/css" /> -->
+
+  <!-- Ract -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- DatePicker and dependencies-->
+  <script src="https://cdn.jsdelivr.net/npm/date-object@latest/dist/umd/date-object.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-element-popper@latest/build/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-multi-date-picker@latest/build/browser.min.js"></script>
+
+  <!-- Optional Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/react-multi-date-picker@latest/build/date_picker_header.browser.js"></script>
+
+
+</head>
+
+<body data-topbar="dark" data-layout="horizontal">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!-- JAVASCRIPT -->
+  <script src="%PUBLIC_URL%/assets/libs/jquery/jquery.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/metismenu/metisMenu.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/simplebar/simplebar.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/node-waves/waves.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/apexcharts/apexcharts.min.js"></script>
+  <!-- jquery.vectormap map -->
+  <script src="%PUBLIC_URL%/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+  <!-- Required datatable js -->
+  <script src="%PUBLIC_URL%/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <!-- Responsive examples -->
+  <script src="%PUBLIC_URL%/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+  <!-- <script src="assets/js/pages/dashboard.init.js"></script> -->
+  <script src="%PUBLIC_URL%/assets/js/app.js"></script>
+  <!--  -->
+  <script>
+    function Change_Theme() {
+      const CurrentTheme = localStorage.getItem("CurrentTheme");
+      const ColorCode = localStorage.getItem("ColorCode");
+      if (CurrentTheme) {
+        if (CurrentTheme === "Light") {
+          
+          // Adding link element
+          $('head').append('<link href="%PUBLIC_URL%/assets/css/light.css" class="Light" rel="stylesheet" type="text/css" />');
+
+          //Lavender:C1
+          if (ColorCode === "Lavender") {
+            $('head').append('<link href="%PUBLIC_URL%/assets/css/c1.css" id="Lavender" rel="stylesheet" type="text/css" />');
+          }
+
+          //Sapphire:C3
+          if (ColorCode === "Sapphire") {
+            $('head').append('<link href="%PUBLIC_URL%/assets/css/c3.css" id="Sapphire" rel="stylesheet" type="text/css" />');
+          }
+
+          //Teal:C5
+          if (ColorCode === "Teal") {
+            $('head').append('<link href="%PUBLIC_URL%/assets/css/c5.css" id="Teal" rel="stylesheet" type="text/css" />');
+          }
+
+          //Cyan:C7
+          if (ColorCode === "Cyan") {
+            $('head').append('<link href="%PUBLIC_URL%/assets/css/c7.css" id="Cyan" rel="stylesheet" type="text/css" />');
+          }
+
+          //Goldenrod:B4
+          if (ColorCode === "Goldenrod") {
+            $('head').append('<link href="%PUBLIC_URL%/assets/css/b4.css" id="Goldenrod" rel="stylesheet" type="text/css" />');
+          }
+
+        } else {
+          if ($('.Light').length) {
+            $(".Light").remove();
+
+            // Deleting link element
+            if ($('#Lavender').length) {
+              document.getElementById("Lavender").remove();
+              $("#Lavender").remove();
+            }
+
+            if ($('#Sapphire').length) {
+              document.getElementById("Sapphire").remove();
+              $("#Sapphire").remove();
+            }
+
+            if ($('#Teal').length) {
+              document.getElementById("Teal").remove();
+              $("#Teal").remove();
+            }
+
+            if ($('#Cyan').length) {
+              document.getElementById("Cyan").remove();
+              $("#Cyan").remove();
+            }
+
+            if ($('#Goldenrod').length) {
+              document.getElementById("Goldenrod").remove();
+              $("#Goldenrod").remove();
+            }
+ 
+          }
+        }
+      }
+    }
+    Change_Theme();
+  </script>
+</body>
+
 </html>

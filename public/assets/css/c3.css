@@ -1,0 +1,16 @@
+/* Sapphire */
+:root {
+    
+    --bs-theme-color:#47539B;
+    
+    --color-Dark: #47539B;          /* Dark Cyan */
+    --color-Default: #6B75AF;       /* Robin's Egg Blue */
+    --color-light: #9097C3;         /* Light Blue */
+    --color-super-light: #B5BAD7;   /* Pale Blue */
+    --btn-primary-color: #DADCEB;   /* Powder Blue */
+
+    --card-bg-gredient: radial-gradient(85.07% 60% at 50% -45.72%, rgba(71, 83, 155, 0.9) 0%, rgba(28, 36, 39, 0) 100%);
+    --login-bg-gredient: radial-gradient(80.07% 75.32% at 50% -45.72%, rgb(71, 83, 155, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+    --porfolio-bg-gredient: radial-gradient(55% 40% at 50% -10%, rgb(144, 151, 195, 0.6) 0%, rgba(28, 36, 39, 0) 100%);
+
+}

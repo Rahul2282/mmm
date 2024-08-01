@@ -8,6 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 // mui components
 import { CssBaseline, Typography } from "@mui/material";
 
+// pages
+
+import Login from "./pages/Login";
+
 import {
   createTheme,
   ThemeProvider,
@@ -86,6 +90,7 @@ const App = () => {
                 </Typography>
               }
             />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <ToastContainer />
         </ThemeProvider>

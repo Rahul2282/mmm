@@ -11,6 +11,8 @@ import { CssBaseline, Typography } from "@mui/material";
 // pages
 
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgetPassword";
+import PortfolioLandscape from "./pages/PortfolioLandscape";
 
 import {
   createTheme,
@@ -23,9 +25,9 @@ let theme = createTheme({
     background: {
       default: "black",
     },
-    themeColor: "#d6ff41",
-    bgColor: "#1c2427",
-    borderColor: "#3E5056",
+    themeColor: "#d6ff41", //yellow sa
+    bgColor: "#1c2427",  // black sa
+    borderColor: "#3E5056",// thoda alg sa 
   },
 
   typography: {
@@ -76,6 +78,7 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 const App = () => {
+  
   return (
     <>
       <BrowserRouter>
@@ -91,10 +94,13 @@ const App = () => {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/forget-password" element={<ForgotPassword />} />
+            <Route path="/portfolio" element={<PortfolioLandscape />} />
           </Routes>
           <ToastContainer />
         </ThemeProvider>
       </BrowserRouter>
+      
     </>
   );
 };

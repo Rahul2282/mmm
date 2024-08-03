@@ -1,0 +1,99 @@
+.forgot-password {
+    font-size: 0.875rem; /* This makes the font size smaller */
+    
+    text-decoration: none;
+    display: block;
+    margin-top: 1rem;
+  }
+
+  
+  .forgot-password:hover {
+    
+    color: #D6FF41
+    
+    
+  }
+
+  .or-text {
+    font-size: 1rem; /* Adjust as needed */
+    color: #666; /* Adjust color as needed */
+    margin: 0.2rem 0;
+    display: inline-block;
+    width: 100%;
+  }
+  
+
+  
+
+
+/* Styles for autofilled inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white; /* Set text color to white */
+    background-color: none; /* Optionally set a background color to ensure contrast */
+    caret-color: white; /* Set the caret (text cursor) color to white */
+}
+
+.forgot-password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: black;
+    padding: 20px;
+  }
+  
+  .forgot-password-form {
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .forgot-password-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .forgot-password-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #3E5056;
+    border-radius: 4px;
+    color: black;
+  }
+/*   
+  .forgot-password-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c2427;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+  } */
+  
+  .message {
+    margin-top: 20px;
+    color: green;
+  }
+  
+
+  .google_button:hover .hover_text {
+    opacity: 1;
+  }
+
+/* .googleIcon:hover{
+    background-color: red;
+  } */
+

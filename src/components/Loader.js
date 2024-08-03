@@ -16,7 +16,7 @@ const Loader = () => {
         alignItems: "center",
         justifyContent: "center",
         zIndex: "99999",
-        backgroundColor: "rgba(255, 255, 255, 0.1);"
+        // backgroundColor: "rgba(255, 255, 255, 0.1);"
       }}
     >
       <img

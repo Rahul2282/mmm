@@ -15,9 +15,6 @@ import { CssBaseline, Typography } from "@mui/material";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";
 import PortfolioLandscape from "./pages/PortfolioLandscape";
-import CustomSelect from "./Components/CustomSelect";
-import SideBar from './Components/SideBar';
-import DetailsPopUp from './Components/DetailsPopUp'
 
 import {
   createTheme,
@@ -139,6 +136,8 @@ const App = () => {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/gpt" element={<GPT />} />
+
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/portfolio" element={<PortfolioLandscape />} />
             <Route path='/detailPopUp' element={ <DetailsPopUp {...props}/>}/>

@@ -61,7 +61,7 @@ File: Main Css File
     -ms-flex-align: center;
     align-items: center;
     margin: 0 auto;
-    height: 70px;
+    height: 20px !important;
     padding: 0 calc(24px / 2) 0 0;
 }
 
@@ -76,7 +76,7 @@ File: Main Css File
 }
 
 .logo {
-    line-height: 70px;
+    line-height: 35px;
 }
 
 .logo .logo-sm {

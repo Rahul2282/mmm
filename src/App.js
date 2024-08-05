@@ -15,6 +15,8 @@ import { CssBaseline, Typography } from "@mui/material";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";
 import PortfolioLandscape from "./pages/PortfolioLandscape";
+import GPT from "./pages/GPT/App"
+import DetailsPopUp from "./Components/DetailsPopUp"
 
 import {
   createTheme,

@@ -10,7 +10,7 @@ import { ErrorBoundary } from "react-error-boundary";
 // mui components
 import { CssBaseline, Typography } from "@mui/material";
 
-// pages
+// pagesgit 
 
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";

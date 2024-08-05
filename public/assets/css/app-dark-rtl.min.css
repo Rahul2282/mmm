@@ -41,8 +41,10 @@ File: Main Css File
   right: 0;
   z-index: 1002;
   background-color: #272d3e;
+  margin: 0px;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    
 }
 
 .navbar-header {
@@ -55,22 +57,22 @@ File: Main Css File
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 auto;
-  height: 70px;
-  padding: 0 0 0 calc(24px / 2);
+  margin: 0;
+  /* height: 25px; */
+  padding: 0;
 }
 .navbar-header .dropdown .show.header-item {
   background-color: #232838;
 }
 
 .navbar-brand-box {
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
   text-align: center;
-  width: 240px;
+  width: 120px;
 }
 
 .logo {
-  line-height: 70px;
+  line-height: 35px;
 }
 .logo .logo-sm {
   display: none;

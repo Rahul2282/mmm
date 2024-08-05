@@ -13,6 +13,7 @@ import { CssBaseline, Typography } from "@mui/material";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";
 import PortfolioLandscape from "./pages/PortfolioLandscape";
+import GPT from "./pages/GPT/App";
 
 import {
   createTheme,
@@ -94,6 +95,8 @@ const App = () => {
               }
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/gpt" element={<GPT />} />
+
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/portfolio" element={<PortfolioLandscape />} />
           </Routes>

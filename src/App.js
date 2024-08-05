@@ -1,9 +1,11 @@
 // router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import React, { useState } from 'react';
 // toast
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ErrorBoundary } from "react-error-boundary";
+
 
 // mui components
 import { CssBaseline, Typography } from "@mui/material";
@@ -13,7 +15,6 @@ import { CssBaseline, Typography } from "@mui/material";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";
 import PortfolioLandscape from "./pages/PortfolioLandscape";
-import GPT from "./pages/GPT/App";
 
 import {
   createTheme,
@@ -79,9 +80,49 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 const App = () => {
-  
+  const [analyticsTool, setAnalyticsTool] = useState('CSS');
+  const analyticsToolOptions = [
+    { key: 'html', value: 'HTML' },
+    { key: 'css', value: 'CSS' },
+    { key: 'js', value: 'JavaScript' },
+    { key: 'bootstrap', value: 'Bootstrap' },
+    { key: 'python', value: 'Python' },
+    { key: 'java', value: 'Java' },
+    { key: 'node', value: 'Node.js' },
+    { key: 'angular', value: 'Angular' },
+  ];
+  const props = {
+    Details: {
+      img: 'path/to/image', // replace with the actual image path
+      name: 'User Name', // replace with actual user name
+      id: "tea-lipton"// replace with actual id
+    },
+    tag1: 'Tag 1',
+    tag_val1: 'Value 1',
+    tag_unit1: 'Unit 1',
+    tag2: 'Tag 2',
+    tag_val2: 'Value 2',
+    tag_unit2: 'Unit 2',
+    AllBrands: ['Brand 1', 'Brand 2'], // replace with actual brands data
+    divWidth: 300,
+    setGetBrand: () => {},
+    setDetailsId: () => {},
+    setDetails: () => {},
+    getKPI: 'Some KPI',
+    matchKPI: 'Matched KPI',
+    allKPI: ['KPI 1', 'KPI 2'], // replace with actual KPIs data
+    setGetKPI: () => {},
+    AnalyticsToolAll: ['Tool 1', 'Tool 2'], // replace with actual tools data
+    setShowPopup: () => {},
+  };
   return (
     <>
+     {/* <CustomSelect
+        value={analyticsTool}
+        onChange={(e) => setAnalyticsTool(e.target.value)}
+        options={analyticsToolOptions}
+      /> */}
+     
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -99,8 +140,9 @@ const App = () => {
 
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/portfolio" element={<PortfolioLandscape />} />
+            <Route path='/detailPopUp' element={ <DetailsPopUp {...props}/>}/>
           </Routes>
-          <ToastContainer />
+          <ToastContainer theme="colored"/>
         </ThemeProvider>
       </BrowserRouter>
       

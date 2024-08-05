@@ -58,13 +58,12 @@ const Login = () => {
     
     if (flag) {
       setLoader(true);
-      const hashedPassword = await bcrypt.hash(users.Password, 10);
-      console.log("login credentials ",users.Username," ",hashedPassword);
       axios.post("login/", {
         username: users.Username,
-        password: hashedPassword,
+        password: users.Password,
       })
         .then((response) => {
+          console.log("response ",response);
           if (response.data.error === 1) {
             setTermsAndConditionsErr(response.data.erroMsg);
             setLoader(false);
@@ -81,7 +80,7 @@ const Login = () => {
           }
         }).catch(() => {
           setLoader(false);
-          toast("Error Occurs")
+          toast.error("Error Occurs")
           
           // setTermsAndConditionsErr("Error");
         });

@@ -19,7 +19,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setMessage("");
     setLoader(true);
-    axios.post("api/forget_password/", {
+    axios.post("forget_password/", {
       email: email
 
     })

@@ -16,3 +16,10 @@ body,
 .Toastify__toast {
   font-size: 16px; /* Increase the font size here as needed */
 }
+
+.arrow-icon-hovered { 
+  transition: transform .3s ease-in-out;
+  transform: rotate(180deg);
+  /* text-orientation: upright ; */
+
+}

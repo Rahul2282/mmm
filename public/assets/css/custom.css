@@ -1063,12 +1063,12 @@ ul#scroller {
     background-color: #1c2427;
     border-color: #d6ff41;
     font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: var(--regular-font-size);
-    line-height: var(--regular-line-height);
+    /* font-style: normal; */
+    /* font-weight: 700; */
+    /* font-size: var(--regular-font-size); */
+    /* line-height: var(--regular-line-height); */
     color: #d6ff41;
-    padding: 10px 57px 10px 57px;
+    padding: 5px 35px 5px 35px;
     border-radius: 10px;
   }
 
@@ -1789,7 +1789,7 @@ ul#scroller {
   height: calc(100vh - 70px);
   margin-top: 70px;
   z-index: 999;
-  width: 350px !important;
+  /* width: 350px !important; */
   /* border: 1px solid yellow; */
 }
 
@@ -1810,7 +1810,7 @@ ul#scroller {
 .simplebar-content-wrapper {
   height: 100%;
   overflow: hidden scroll;
-  padding: 0px 40px !important;
+  padding: .5rem !important;
   background: radial-gradient(
     90% 50% at 50% -40%,
     rgba(220, 255, 91, 0.7) 0%,

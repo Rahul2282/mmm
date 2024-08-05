@@ -30,6 +30,7 @@ const Cascader = ({
   const [selectedExpandIcon, setSelectedExpandIcon] = useState(null);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const[hit,setHit]=useState(false);
+  const [hover,setHover]=useState(false);
   
 
   const handleCategoryButtonClick = (categoryId, category,event) => {
@@ -89,7 +90,7 @@ const Cascader = ({
 
   const handleExpandIconHover = (categoryId, event) => {
 
-    
+    setHover(true);
 
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -104,6 +105,7 @@ const Cascader = ({
   const handleExpandIconLeave = (event) => {
     timerRef.current = setTimeout(() => {
         // setFlag(false)
+        setHover(false);
       setHoveredCategory(null);
       setSelectedExpandIcon(null);
       setSelectedCategory(null);
@@ -206,28 +208,20 @@ const Cascader = ({
   }, [rootRef.current,child.current,span.current]);
 
 
- 
-
-
-  
-
-
-
-
-  
-  
   return (
     <div style={{ position: "relative" }} >
       <div
         ref={rootRef}
         style={{
            
-          padding: "8px 0",
-          backgroundColor: `${localStorage.getItem('ColorCode')}`,
+          padding: "0px",
+          backgroundColor: "#3e5056",
           overflowY: "auto",
         //   borderRadius: "8px",
           whiteSpace: "nowrap",
-          minWidth: "80px",
+          minWidth: "calc(100% + 20px)",
+          
+          overflow:'hidden'
           
         }}
         className="root"
@@ -236,24 +230,26 @@ const Cascader = ({
       >
         { 
         data?.map((category) => (
-          <div key={category.id} style={{ marginBottom: "4px", width: "100%" }}>
+          <div key={category.id} style={{ marginBottom: "0px", width: "100%" }}>
             <div style={{ display: "flex", width: "100%" }}>
               <div
                 style={{
                   color: selectedPath.includes(category.id) ? "black" : "white",
-                  padding: "0 10px",
-                  fontSize: "14px",
+                  padding: "2px 3px 2px 2px",
+                  fontSize:'small',
                   cursor: "pointer",
                   backgroundColor: selectedPath.includes(category.id)
                     ? "#D6FF41"
                     : selectedExpandIcon === category.id
-                    ? `${localStorage.getItem('ColorTheme')}`
-                    : hit==false?`${localStorage.getItem('ColorTheme')}`:'grey',
+                    ? "grey"
+                    : hit==false?"#3e5056":'grey',
                   display: "flex",
                   width: "100%",
                   cursor: category.access === 0 ? 'not-allowed' : 'pointer',
+                  
                 }}
                 
+                onMouseEnter={(e) => handleExpandIconHover(category.id, e)}
                 onClick={(event) => handleCategoryButtonClick(category.id, category,event)}
                 onMouseLeave={handleExpandIconLeave}
               >
@@ -272,9 +268,10 @@ const Cascader = ({
                       fontWeight: "bold",
                     }}
                     onMouseEnter={(e) => handleExpandIconHover(category.id, e)}
-                    
+                    className={console.log("hover",hover) ||selectedExpandIcon === category.id && hover===true ?`arrow-icon-hovered`:''}
                   >
-                    {selectedExpandIcon === category.id ? <KeyboardArrowLeftOutlinedIcon/> : <KeyboardArrowRightOutlinedIcon/>}
+                  {selectedExpandIcon === category.id && hover==false ? <KeyboardArrowLeftOutlinedIcon /> : <KeyboardArrowRightOutlinedIcon />}
+                  
                   </span>
                 )}
               </div>
@@ -297,7 +294,7 @@ const Cascader = ({
                 style={{
                   position: "absolute",
                   // background: "white",
-                  left: "100%",
+                  left: "calc(100% + 20px)",
                   
                 
                 
@@ -530,9 +527,9 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
                 border: "1px solid #3E5056",
                 borderRadius: "4px",
                 autocomplete:"off",
-                backgroundColor: `${localStorage.getItem('ColorCode')}`,
+                backgroundColor: "#1C2427",
                 color: "white",
-                fontSize:'12px',
+                fontSize:'small',
                 width:'17rem',
                 padding:'4px',
                 outline: "none"
@@ -550,7 +547,7 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
                 border: "none",
                 color: "white",
                 cursor: "pointer",
-                fontSize:'17px'
+                fontSize:'small',
               }}
             >
               {isCascaderVisible ? <KeyboardArrowUpOutlinedIcon/> :<KeyboardArrowDownOutlinedIcon/>}
@@ -630,7 +627,7 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
                   maxHeight: "100px",
                   overflowY: "auto",
                   color: "white",
-                  fontSize:"12px"
+                  fontSize:'small',
                 }}
               >
                 No data

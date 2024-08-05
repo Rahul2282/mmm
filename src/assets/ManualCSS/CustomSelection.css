@@ -1,0 +1,108 @@
+.custom-select-container {
+  position: relative;
+  /* width: 200px; Adjusted for better visuals */
+  /* margin: 20px auto; Centered on the page */
+  /* font-family: Arial, sans-serif; Added a font for consistency */
+  outline: none;
+}
+
+.custom-select {
+  width: 100%;
+  /* padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px; */
+  background-color: rgb(62, 80, 86);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+  color: #fff;
+  font-size: small;
+  border: 1px solid rgb(62, 80, 86);
+  border-radius: 4px;
+  background-color: rgb(28, 36, 39);
+  color: white;
+  /* font-size: .8rem; */
+  width: 17rem;
+  padding: 2px;
+  /* padding-right: 2px; */
+  outline: none;
+  border-bottom: 'solid red 2px';
+}
+
+.custom-select:hover {
+  border-color: #888;
+}
+
+/* .dropdown-icon {
+  margin-left: 10px;
+}
+.dropdown-icon-hover{
+  transform: rotate(180deg);
+  transition: transform .3s ease-in-out;
+
+} */
+
+.custom-options {
+  position: absolute;
+  top: calc(100%);
+  left: 0;
+  /* margin-top: 1px; */
+
+  /* border: 1px solid #ccc; */
+  
+  background-color: rgb(62, 80, 86);
+  z-index: 1;
+  max-height: max-content;
+  overflow-y: auto;
+  border-radius: 0 0 4px 4px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  /* transition: opacity 0.3s ease; */
+}
+
+.custom-option {
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  font-size: .7rem;
+  color: #fff;
+  /* font-size: .8rem; */
+  width: 17rem;
+}
+
+
+
+
+.custom-option:checked {
+  background-color: #ffc107;
+  color: #000;
+  font-style: italic;
+  /* font-weight: bold; */
+}
+
+.custom-option.selected-option,
+.custom-select.selected-option {
+  background-color: green;
+  color: white;
+  /* font-weight: bold; */
+}
+
+.custom-option:hover,
+.custom-option.hovered-option {
+  background-color: #d6ff41;
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  .custom-select-container {
+      max-width: 500px;
+  }
+}
+
+@media (min-width: 900px) {
+  .custom-select-container {
+      max-width: 700px;
+  }
+}

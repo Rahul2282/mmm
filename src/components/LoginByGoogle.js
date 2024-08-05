@@ -11,17 +11,18 @@ import { Tooltip } from '@mui/material';
 const LoginByGoogle = () => {
 
     const navigate = useNavigate();
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState('');
 
     const sendData = (email) => {
-
+        console.log("SendData ",email);
         axios.post("google_signin/", {
             email: email,
         })
             .then((response) => {
                 if (response.data.error === 1) {
                     //  setTermsAndConditionsErr(response.data.erroMsg);
-                    toast(response.data.erroMsg);
+                    toast.error(response.data.erroMsg);
+                    console.log("oaisjfaosj");
                     //  setLoader(false);
                 } else {
                     console.log("problem");
@@ -36,8 +37,8 @@ const LoginByGoogle = () => {
                     //  setLoader(false);
                 }
             }).catch((err) => {
-                console.log(err);
-                toast(err);
+                console.log("err ",err);
+                toast.error("Invalid");
                 //   setLoader(false);
             });
     }
@@ -62,7 +63,7 @@ const LoginByGoogle = () => {
     });
 
     useEffect(() => {
-        if (user.length>0) {
+        if (user!=='') {
             axios
                 .get(
                     `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,

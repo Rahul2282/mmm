@@ -8,6 +8,8 @@
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.6",
     "@react-oauth/google": "^0.12.1",
+    "@shadcn/ui": "^0.0.4",
+    "@sinm/react-chrome-tabs": "^2.3.3",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "hamburger-react": "^2.5.1",

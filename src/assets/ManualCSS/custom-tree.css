@@ -7,14 +7,14 @@
   
   .rd3t-node,
   .rd3t-leaf-node {
-    fill: gray !important;
-    stroke: gray !important;
+    fill: black !important;
+    stroke: black !important;
     stroke-width: 1px !important;
   }
   
   .image-bg {
     background: radial-gradient(
-      50% 50% at -15% 50%,
+      60% 60% at -15% 50%,
       rgba(220, 255, 91, 0.5) 0%,
       rgba(28, 36, 39, 0) 100%
     );

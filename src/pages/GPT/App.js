@@ -10,7 +10,8 @@ import Axios from "./Axios";
 import Home from "./pages/Home";
 import Topbar from "../../Components/Topbar";
 
-// import Menubar from "../../Components/Menubar";
+// import Navbar from "../../Components/Navbar";
+
 
 let theme = createTheme({
   palette: {
@@ -91,7 +92,7 @@ const App = () => {
   return (
     <>
       <Topbar BrandName=""/>
-      {/* <Menubar /> */}
+      {/* <Navbar /> */}
       <div className="main-content">
         <div className="page-content">
           <Stack

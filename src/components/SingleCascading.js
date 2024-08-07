@@ -234,11 +234,11 @@ const Cascader = ({
             <div style={{ display: "flex", width: "100%" }}>
               <div
                 style={{
-                  color: selectedPath.includes(category.id) ? "black" : "white",
+                  color: selectedPath?.includes(category.id) ? "black" : "white",
                   padding: "2px 3px 2px 2px",
                   fontSize:'small',
                   cursor: "pointer",
-                  backgroundColor: selectedPath.includes(category.id)
+                  backgroundColor: selectedPath?.includes(category.id)
                     ? "#D6FF41"
                     : selectedExpandIcon === category.id
                     ? "grey"
@@ -262,7 +262,7 @@ const Cascader = ({
                       marginLeft: "4px",
                       cursor: "pointer",
                       textAlign: "right",
-                      color: selectedPath.includes(category.id)
+                      color: selectedPath?.includes(category.id)
                         ? "black"
                         : "#D6FF41",
                       fontWeight: "bold",
@@ -361,7 +361,7 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
   const flattenedData = flattenDataToObject(data);
 
   function getTeaList(idList, flattenedData) {
-    return idList.map((key) => flattenedData[key]);
+    return idList?.map((key) => flattenedData[key]);
   }
 
   useEffect(() => {
@@ -382,7 +382,7 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
 
   useEffect(() => {
     const pathSegments = match?.split("-");
-    const newPath = pathSegments.map((segment, index) =>
+    const newPath = pathSegments?.map((segment, index) =>
       pathSegments.slice(0, index + 1).join("-")
     );
     setSelectedPath(newPath);

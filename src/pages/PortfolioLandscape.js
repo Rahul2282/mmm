@@ -186,156 +186,25 @@ const RenderRectSvgNode = ({ nodeDatum, toggleNode, handleNodeClick }) => {
   );
 };
 
-
-
-// const Portfolio = () => {
-//   const [dimensions, translate, containerRef] = useCenteredTree();
-//   const [chartJson, setChartJson] = useState({});
-//   const [Details, setDetails] = useState({});
-//   const [DetailsId, setDetailsId] = useState("");
-
-//   const [loader, setLoader] = useState(false);
-
-//   const nodeSize = { x: 240, y: 100 };
-
-//   const containerStyles = {
-//     width: "100vw",
-//     height: "100vh",
-//   };
-
-//   const handleNodeClick = (nodeDatum) => {
-//     setDetailsId("");
-//     setDetails({});
-
-//     if (parseInt(nodeDatum.access) === 1) {
-//       setDetailsId(nodeDatum.id);
-//       setDetails({
-//         id: nodeDatum.id,
-//         name: nodeDatum.name,
-//         hirarchy_level: nodeDatum.hirarchy_level,
-//         img: nodeDatum.img,
-//       });
-
-//       localStorage.setItem(
-//         "BrandDetails",
-//         JSON.stringify({
-//           id: nodeDatum.id,
-//           name: nodeDatum.name,
-//           hirarchy_level: nodeDatum.hirarchy_level,
-//           img: nodeDatum.img,
-//         })
-//       );
-//     }
-//   };
-
-//   const fetchDisplayNames = async () => {
-//     try {
-//       const response = await Axios.post("display_name_filter/", {});
-
-//       const data = response.data;
-//       localStorage.setItem("displayNames", JSON.stringify(data.data));
-//     } catch (error) {
-//       console.error("Failed to fetch:", error);
-//     }
-//   };
-
-//   const fetchDisplayNamesChart = async () => {
-//     try {
-//       const response = await Axios.post("display_name_chart/", {});
-
-//       const data = response.data;
-//       localStorage.setItem("displayNamesChart", JSON.stringify(data.data));
-//     } catch (error) {
-//       console.error("Failed to fetch:", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     setLoader(true);
-//     Axios
-//       .post("get_hirarchy_data_nested/", {})
-//       .then((response) => {
-//         if (response.data.error === 1) {
-//           toast.error(response.data.erroMsg);
-//           setLoader(false);
-//         } else {
-//           setChartJson(response.data);
-//           localStorage.setItem("allBrands", JSON.stringify(response.data));
-//           setLoader(false);
-//         }
-//       })
-//       .catch((data) => {
-//         setLoader(false);
-//       });
-
-//     fetchDisplayNames();
-//     fetchDisplayNamesChart();
-
-//     return () => {};
-//   }, []);
-
-//   return (
-//     <div style={{ backgroundColor: "black" }}>
-//       <CssBaseline />
-//       {loader ? <Loader /> : null}
-//       <ToastContainer />
-//       <Topbar BrandName="" />
-
-//       {/* {DetailsId !== "" ? (
-//         <DetailsPopUp
-//           DetailsId={DetailsId}
-//           setDetailsId={setDetailsId}
-//           Details={Details}
-//           setDetails={setDetails}
-//         />
-//       ) : null} */}
-
-//       <div style={containerStyles} ref={containerRef}>
-//         <Tree
-//           data={chartJson}
-//           dimensions={dimensions}
-//           translate={translate}
-//           renderCustomNodeElement={(rd3tProps) => (
-//             <RenderRectSvgNode
-//               {...rd3tProps}
-//               handleNodeClick={handleNodeClick}
-//               setDetailsId={setDetailsId}
-//             />
-//           )}
-//           orientation="horizontal"
-//           initialDepth={maxdepth}
-//           separation={{ siblings: 1, nonSiblings: 1 }}
-//           enableLegacyTransitions={800}
-//           nodeSize={nodeSize}
-//           pathFunc={"step"}
-//           zoomable={true}
-//           pathClassFunc={() => "custom-path-link"}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Portfolio;
 const PortfolioLandscape = () => {
   const [dimensions, translate, containerRef] = useCenteredTree();
   const [chartJson, setChartJson] = useState({});
-  const [Details, setDetails] = useState({});
-  const [DetailsId, setDetailsId] = useState("");
+  
   const [loader, setLoader] = useState(false);
-
-  const nodeSize = { x: 240, y: 100 };
-
-  const containerStyles = {
-    width: "100vw",
-    height: "100vh",
-  };
-  // console.log("usecenteredTree",useCenteredTree);
+  const [maxDepth, setMaxDepth] = useState(0);
+  const context=useContext(appContext);
+  const {isOpen,setIsOpen,DetailsId, setDetailsId,Details, setDetails,node}=context;
+  const nodeSize = { x: 250, y: 100 };
+  const containerStyles = { width: "100vw", height: "100vh" };
 
   const handleNodeClick = (nodeDatum) => {
-    setDetailsId("");
-    setDetails({});
-    setIsOpen(!isOpen);
+    
+    if(nodeDatum.access==0)
+        return null;
+    setIsOpen(true);
+
+
+    console.log("handleNodeClick ",nodeDatum);
 
     if (parseInt(nodeDatum.access) === 1) {
       setDetailsId(nodeDatum.id);
@@ -433,14 +302,6 @@ const PortfolioLandscape = () => {
       <ToastContainer />
       <Topbar BrandName="" />
 
-      {/* {DetailsId !== "" ? (
-        <DetailsPopUp
-          DetailsId={DetailsId}
-          setDetailsId={setDetailsId}
-          Details={Details}
-          setDetails={setDetails}
-        />
-      ) : null} */}
 
       <div style={containerStyles} ref={containerRef}>
         <Tree

@@ -34,13 +34,12 @@ const Topbar = (props) => {
 
   const BrandDetails = JSON.parse(localStorage.getItem("BrandDetails"));
   console.log("BrandDetails payload", BrandDetails)
-  const [DetailsId, setDetailsId] = useState("");
-  const [Details, setDetails] = useState({});
   const [DetailsFlag, setDetailsFlag] = useState(false);
   const [ShowHideMenuIcon, setShowHideMenuIcon] = useState("");
-
+  const [move,setMove]=useState(false);
   const context=useContext(appContext);
-  const {isOpen,setIsOpen}=context;
+  const {isOpen,setIsOpen,DetailsId, setDetailsId,Details, setDetails}=context;
+  console.log("topbar isOpen",isOpen);
   
 
   useEffect(() => {
@@ -115,6 +114,23 @@ const Topbar = (props) => {
     const fullName = getDashSeparatedName(DetailsId, flattenedData);
     setFullNameBrand(fullName);
   }, [BrandName]);
+
+
+  useEffect(()=>{
+
+    if(isOpen)
+      setMove(true);
+    else
+    {
+      setTimeout(()=>{
+          setMove(false);
+      },400)
+    }
+
+
+  },[isOpen])
+
+
 
   return (
     <div>
@@ -309,7 +325,7 @@ const Topbar = (props) => {
                     marginRight: "10px",
                   }}
                 >
-                  {true && <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} duration={0.3} />}
+                  {<Hamburger toggled={isOpen} toggle={setIsOpen} size={20} duration={0.4} />}
                 </div>
 
               </div>
@@ -318,9 +334,7 @@ const Topbar = (props) => {
         
       </header>
       {
-       isOpen?
-        BrandDetails.id !== "" ? <DetailsPopUp DetailsId={DetailsId} setDetailsId={setDetailsId} Details={Details} setDetails={setDetails} />
-          : null:null
+        move?<DetailsPopUp/>:null 
       }
     </div>
   );

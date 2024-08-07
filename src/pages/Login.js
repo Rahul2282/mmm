@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { useNavigate } from "react-router";
 import axios from "../Axios";
 import Loader from "../Components/Loader";
@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import '../assets/ManualCSS/login.css'
 import { jwtDecode } from "jwt-decode";
 import LoginByGoogle from "../Components/LoginByGoogle";
+import appContext from "../context/appContext";
 
 
 const Login = () => {
@@ -29,6 +30,9 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState();
   const [termsAndConditionsErr, setTermsAndConditionsErr] = useState();
 
+
+  const context=useContext(appContext);
+  const {setIsOpen,setDetails}=context;
 
   const handleValidation = () => {
     setUsernameError("");
@@ -70,17 +74,25 @@ const Login = () => {
         password: users.Password,
       })
         .then((response) => {
-          console.log("response ",response);
+          console.log("response ",response.data.data);
           if (response.data.error === 1) {
             setTermsAndConditionsErr(response.data.erroMsg);
             setLoader(false);
           } else {
+            
             localStorage.setItem("TokenSkewb", response.data.data.token);
             localStorage.setItem("NameSkewb", response.data.data.Name);
             localStorage.setItem("is_superuser", response.data.data.is_superuser);
             if (localStorage.getItem('CurrentTheme') === null) {
               localStorage.setItem('CurrentTheme', "Dark")
             }
+            setDetails({
+              id: response.data.data.acessname,
+              name: response.data.data.acessname,
+              hirarchy_level: response.data.data.level,
+              img: '#'
+            })
+            setIsOpen(false);
 
             navigate("/portfolio");
             setLoader(false);

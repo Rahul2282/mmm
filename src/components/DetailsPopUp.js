@@ -10,8 +10,8 @@ import CascaderWrapper from "./SingleCascading.js";
 import appContext from "../context/appContext";
 
 
-const DetailsPopUp = (props) => {
-  // console.log("props.Data: ", props.Data);
+const DetailsPopUp = () => {
+  // console.log("Data: ", Data);
   const navigate = useNavigate();
   const DivRef = useRef(null);
   const mainDef=useRef(null);
@@ -21,8 +21,10 @@ const DetailsPopUp = (props) => {
   const [divWidth, setDivWidth] = useState("");
 
   const context=useContext(appContext);
-  const {isOpen,setIsOpen}=context;
+  const {isOpen,setIsOpen,DetailsId, setDetailsId,Details, setDetails,node}=context;
 
+  
+  console.log("DetailsPopUP ",isOpen," " ,Details)
   // console.log("divWidth: ", divWidth);
 
   useLayoutEffect(() => {
@@ -66,8 +68,8 @@ const DetailsPopUp = (props) => {
 
   useEffect(() => {
     if (getBrand !== "") {
-      props.setDetailsId(getBrand?.value);
-      props.setDetails({
+      setDetailsId(getBrand?.value);
+      setDetails({
         id: getBrand?.id,
         name: getBrand?.name,
         hirarchy_level: getBrand?.hirarchy_level,
@@ -96,7 +98,7 @@ const DetailsPopUp = (props) => {
     localStorage.removeItem("CampaignAnalyticFilter");
     axios
       .post("get_hirarchy_dropdown/", {
-        hirarchy: props.Details.id,
+        hirarchy: Details.id,
         // hirarchy: getBrand.value
       })
       .then((response) => {
@@ -156,9 +158,9 @@ const DetailsPopUp = (props) => {
       KPIName: KPIName,
       kpiID: getKPI?.id,
       AnalyticsTool: AnalyticsTool,
-      Brand: props.Details.id,
+      Brand: Details.id,
       // Brand: getBrand.value,
-      BrandName: props.Details.name,
+      BrandName: Details.name,
       // BrandName: getBrand.name,
       Menubar: AnalyticsToolAll,
     };
@@ -174,7 +176,7 @@ const DetailsPopUp = (props) => {
       setLoader(true);
       axios
         .post("get_grain_contrib_new_filters/", {
-          brand: props.Details.id,
+          brand: Details.id,
           // brand: getBrand.value,
           kpi: KPI,
         }
@@ -227,7 +229,7 @@ const DetailsPopUp = (props) => {
             localStorage.setItem("Chartdata", JSON.stringify(ChartdataTemp));
             setLoader(false);
 
-            var id = props.Details.id;
+            var id = Details.id;
             // var id = getBrand.value
             navigate("/" + AnalyticsTool, {
               state: {
@@ -247,12 +249,13 @@ const DetailsPopUp = (props) => {
   
 
   const handleFilterClick = (event) => {
+    event.stopPropagation(); // Prevent the click event from propagating
     if (mainDef.current && !mainDef.current.contains(event.target)) {
         // setIsOpen(false);
-      props.setDetailsId("");
+      // setDetailsId("");
       if (typeof isOpen !== "undefined") {
         setIsOpen(false);
-        console.log("ISOPEN false ");
+        // console.log("ISOPEN false ");
       }
     }
   };
@@ -277,12 +280,13 @@ const DetailsPopUp = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (props.Details.hirarchy_level !== "" && props.Details.name !== "") {
+      if (Details.hirarchy_level !== "" && Details.name !== "") {
         const payload = {
-          level: props.Details.hirarchy_level,
-          name: props.Details.id,
+          level: Details.hirarchy_level,
+          name: Details.id,
         };
 
+        console.log("details Payload",payload)
         try {
           const response = await axios.post("get_kpi_tools/", payload);
           // console.log("kpi option: ", response.data.data);
@@ -295,7 +299,7 @@ const DetailsPopUp = (props) => {
     };
 
     fetchData();
-  }, [props.Details, getBrand]); // Add props.Details as a dependency to run the effect when it changes
+  }, [Details, getBrand]); // Add Details as a dependency to run the effect when it changes
 
   useEffect(() => {
     console.log("getKPI ",getKPI);
@@ -316,27 +320,33 @@ const DetailsPopUp = (props) => {
   }, [getKPI, getBrand])
 
 
-  // useEffect(() => {
-  //    if (DivRef.current && isOpen===false) {
+  useEffect(() => {
+     if (DivRef.current && isOpen===false) {
 
-  //     setTimeout(()=>{
-  //       console.log("Scrolling to top",DivRef.current);
-  //       // setDivDisplay('none');
-  //       DivRef.current.scrollIntoView({ behavior: "instant", block: "end" }); 
-  //     },100)
+      setTimeout(()=>{
+        console.log("Scrolling to top",DivRef.current);
+        // setDivDisplay('none');
+        DivRef.current.scrollIntoView({ behavior: "instant", block: "end" }); 
+      },400)
 
 
 
-  //   }
-  //   // if(isOpen)
-  //   // {
-  //   //   setDivDisplay('block');
-  //   // }
-  // }, [isOpen]);
+    }
+    // if(isOpen)
+    // {
+    //   setDivDisplay('block');
+    // }
+  }, [isOpen]);
 
 console.log("isOpen ",isOpen);
 
 
+
+useEffect(() => {
+  if (mainDef.current) {
+    mainDef.current.style.right = isOpen ? '0' : '-350px';
+  }
+}, [isOpen]);
   return (
     <>
       {loader ? <Loader /> : null}
@@ -346,28 +356,53 @@ console.log("isOpen ",isOpen);
           position: "absolute",
           width: "100%",
           height: "100vh",
-
-          background: "#00000000",
+          // background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+          // backdropFilter: 'blur(4px)', // Apply blur effect
+          // opacity:'.1',
+          // overflowX:"hidden",
           zIndex: "999",
+          // transition:'backdropFilter .4 ease-in-out',
+
+          // border: "1px solid red"
+        }}
+        
+        
+      >
+        <div
+         style={{
+          position: "absolute",
+          width: "100%",
+          height: "100vh",
+          background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+          backdropFilter: 'blur(5px)', // Apply blur effect
+          // opacity:'.1',
+          // overflowX:"hidden",
+          zIndex: "999",
+          // transition:'backdropFilter .4 ease-in-out',
+
           // border: "1px solid red"
         }}
         
         onClick={(e) => {
           handleFilterClick(e);
         }}
-      >
+        >
+          
+        </div>
         <div
           className={'right-bar'}
           ref={mainDef}
           style={{
             width: '300px',
             maxWidth: '400px',
-            right: isOpen ? '0' : '-350px',
-
-            transition: 'right .4s ease-in-out'
+            right: '-350px',
+            transition: 'right .4s ease-in-out',
+            position: 'fixed',
+            
 
           }}
         >
+          
           <div data-simplebar className="h-100" style={{ height: "100%", overflowY: "scroll", }}>
             <div className="rightbar-title d-flex align-items-center pt-4 pb-2" ref={DivRef}>
 
@@ -376,7 +411,7 @@ console.log("isOpen ",isOpen);
             <div className="row justify-content-center">
               <div className="col-sm-12 text-center" >
                 <img
-                  src={`${props.Details.img}?v=${new Date().getTime()}`}
+                  src={`${Details.img}?v=${new Date().getTime()}`}
                   alt=""
                   style={{
                     width: "200px",
@@ -390,7 +425,7 @@ console.log("isOpen ",isOpen);
 
               >
                 <h4 className="h-menu-user-name" style={{}}>
-                  {props.Details.name}
+                  {Details.name}
                 </h4>
               </div>
               <hr className="h-menu-user-hr" />
@@ -440,17 +475,17 @@ console.log("isOpen ",isOpen);
                     </h3>
                     {/* <SelectBrand
                       setGetBrand={setGetBrand}
-                      match={props.Details.id}
-                      setDetailsId={props.setDetailsId}
-                      setDetails={props.setDetails}
+                      match={Details.id}
+                      setDetailsId={setDetailsId}
+                      setDetails={setDetails}
                     /> */}
                     <CascaderWrapper
                       data={[AllBrands]}
                       divWidth={divWidth}
                       setGetBrand={setGetBrand}
-                      match={props.Details.id}
-                      setDetailsId={props.setDetailsId}
-                      setDetails={props.setDetails}
+                      match={Details.id}
+                      setDetailsId={setDetailsId}
+                      setDetails={setDetails}
                     />
                   </div>
 
@@ -483,9 +518,9 @@ console.log("isOpen ",isOpen);
                       data={[AllBrands]}
                       divWidth={divWidth}
                       setGetBrand={setGetBrand}
-                      match={props.Details.id}
-                      setDetailsId={props.setDetailsId}
-                      setDetails={props.setDetails}
+                      match={Details.id}
+                      setDetailsId={setDetailsId}
+                      setDetails={setDetails}
                     /> */}
                     {getKPI !== "" && matchKPI && 
                       <CascaderWrapper
@@ -629,6 +664,7 @@ console.log("isOpen ",isOpen);
               </div>
             </footer>
           </div>
+         
         </div>
         {/* <div className="rightbar-overlay"></div> */}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "../Axios";
 import Loader from "../Components/Loader";
@@ -48,6 +48,13 @@ const Login = () => {
     }
     return flag;
   };
+
+  // useEffect(()=>{
+  //   if(localStorage.getItem('TokenSkewb'))
+  //   {
+  //       navigate('/portfolio');
+  //   }
+  // },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

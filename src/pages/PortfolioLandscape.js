@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect,useContext } from "react";
 import Topbar from "../Components/Topbar";
 import Tree from "react-d3-tree";
 import { useCenteredTree } from "../Components/Helpers";
@@ -7,10 +8,11 @@ import Axios from "../Axios";
 import Loader from "../Components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import { CssBaseline } from "@mui/material";
-// import Navbar from "../Components/Navbar"
-
+import DetailsPopUp from "../Components/DetailsPopUp";
+import appContext from "../context/appContext";
 const RenderRectSvgNode = ({ nodeDatum, toggleNode, handleNodeClick }) => {
   const [isHovered, setIsHovered] = useState(false);
+  
 
   // Inline style for the default and hovered states
   const rectStyle = {
@@ -321,14 +323,19 @@ const PortfolioLandscape = () => {
   const [Details, setDetails] = useState({});
   const [DetailsId, setDetailsId] = useState("");
   const [loader, setLoader] = useState(false);
-  const [maxDepth, setMaxDepth] = useState(0);
 
-  const nodeSize = { x: 250, y: 100 };
-  const containerStyles = { width: "100vw", height: "100vh" };
+  const nodeSize = { x: 240, y: 100 };
+
+  const containerStyles = {
+    width: "100vw",
+    height: "100vh",
+  };
+  // console.log("usecenteredTree",useCenteredTree);
 
   const handleNodeClick = (nodeDatum) => {
     setDetailsId("");
     setDetails({});
+    setIsOpen(!isOpen);
 
     if (parseInt(nodeDatum.access) === 1) {
       setDetailsId(nodeDatum.id);
@@ -413,8 +420,11 @@ const PortfolioLandscape = () => {
     fetchDisplayNames();
     fetchDisplayNamesChart();
 
-    return () => {};
+    return () => { };
   }, []);
+
+
+  
 
   return (
     <div style={{ backgroundColor: "black" }}>
@@ -422,7 +432,15 @@ const PortfolioLandscape = () => {
       {loader ? <Loader /> : null}
       <ToastContainer />
       <Topbar BrandName="" />
-      {/* <Navbar/> */}
+
+      {/* {DetailsId !== "" ? (
+        <DetailsPopUp
+          DetailsId={DetailsId}
+          setDetailsId={setDetailsId}
+          Details={Details}
+          setDetails={setDetails}
+        />
+      ) : null} */}
 
       <div style={containerStyles} ref={containerRef}>
         <Tree

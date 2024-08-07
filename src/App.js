@@ -17,12 +17,14 @@ import ForgotPassword from "./pages/ForgetPassword";
 import PortfolioLandscape from "./pages/PortfolioLandscape";
 import GPT from "./pages/GPT/App"
 import DetailsPopUp from "./Components/DetailsPopUp"
+import AppState from "./context/appState";
 
 import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
 } from "@mui/material/styles";
+
 
 let theme = createTheme({
   palette: {
@@ -124,7 +126,7 @@ const App = () => {
         onChange={(e) => setAnalyticsTool(e.target.value)}
         options={analyticsToolOptions}
       /> */}
-     
+     <AppState>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -142,11 +144,12 @@ const App = () => {
 
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/portfolio" element={<PortfolioLandscape />} />
-            <Route path='/detailPopUp' element={ <DetailsPopUp {...props}/>}/>
+            <Route path='/detailPopUp' element={ <DetailsPopUp />}/>
           </Routes>
           <ToastContainer theme="colored"/>
         </ThemeProvider>
       </BrowserRouter>
+      </AppState>
       
     </>
   );

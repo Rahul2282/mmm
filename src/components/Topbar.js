@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Cross as Hamburger } from "hamburger-react";
+import DetailsPopUp from "./DetailsPopUp";
+import appContext from "../context/appContext";
 
 // LOGO
 import LogoMark from "../images/skewb-logomark.png";
@@ -31,11 +33,15 @@ const Topbar = (props) => {
   const [fullNameBrand, setFullNameBrand] = useState("");
 
   const BrandDetails = JSON.parse(localStorage.getItem("BrandDetails"));
+  console.log("BrandDetails payload", BrandDetails)
   const [DetailsId, setDetailsId] = useState("");
   const [Details, setDetails] = useState({});
   const [DetailsFlag, setDetailsFlag] = useState(false);
   const [ShowHideMenuIcon, setShowHideMenuIcon] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+
+  const context=useContext(appContext);
+  const {isOpen,setIsOpen}=context;
+  
 
   useEffect(() => {
     const url = window.location.href;
@@ -64,8 +70,8 @@ const Topbar = (props) => {
         location.pathname === "/portfolio"
         ? ""
         : Analyse
-        ? Analyse.BrandName
-        : ""
+          ? Analyse.BrandName
+          : ""
     );
     setKPIName(
       location.pathname !== "/home" ? (Analyse ? Analyse.KPIName : "") : ""
@@ -118,10 +124,10 @@ const Topbar = (props) => {
             height: "40px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-around",
           }}
         >
-          <div className="row w-100">
+          
             <div className="col-sm-1">
               <div className="navbar-brand-box">
                 <Link to="/portfolio" className="logo logo-dark">
@@ -131,16 +137,16 @@ const Topbar = (props) => {
                         localStorage.getItem("CurrentTheme") === "Dark"
                           ? LogoMark
                           : localStorage.getItem("ColorCode") === "Lavender"
-                          ? LavenderLogo
-                          : localStorage.getItem("ColorCode") === "Sapphire"
-                          ? SapphireLogo
-                          : localStorage.getItem("ColorCode") === "Teal"
-                          ? TealLogo
-                          : localStorage.getItem("ColorCode") === "Cyan"
-                          ? CyanLogo
-                          : localStorage.getItem("ColorCode") === "Goldenrod"
-                          ? GoldenrodLogo
-                          : LogoMark
+                            ? LavenderLogo
+                            : localStorage.getItem("ColorCode") === "Sapphire"
+                              ? SapphireLogo
+                              : localStorage.getItem("ColorCode") === "Teal"
+                                ? TealLogo
+                                : localStorage.getItem("ColorCode") === "Cyan"
+                                  ? CyanLogo
+                                  : localStorage.getItem("ColorCode") === "Goldenrod"
+                                    ? GoldenrodLogo
+                                    : LogoMark
                       }
                       alt="logo-sm"
                       height="20"
@@ -152,16 +158,16 @@ const Topbar = (props) => {
                         localStorage.getItem("CurrentTheme") === "Dark"
                           ? LogoMark
                           : localStorage.getItem("ColorCode") === "Lavender"
-                          ? LavenderLogo
-                          : localStorage.getItem("ColorCode") === "Sapphire"
-                          ? SapphireLogo
-                          : localStorage.getItem("ColorCode") === "Teal"
-                          ? TealLogo
-                          : localStorage.getItem("ColorCode") === "Cyan"
-                          ? CyanLogo
-                          : localStorage.getItem("ColorCode") === "Goldenrod"
-                          ? GoldenrodLogo
-                          : LogoMark
+                            ? LavenderLogo
+                            : localStorage.getItem("ColorCode") === "Sapphire"
+                              ? SapphireLogo
+                              : localStorage.getItem("ColorCode") === "Teal"
+                                ? TealLogo
+                                : localStorage.getItem("ColorCode") === "Cyan"
+                                  ? CyanLogo
+                                  : localStorage.getItem("ColorCode") === "Goldenrod"
+                                    ? GoldenrodLogo
+                                    : LogoMark
                       }
                       alt="logo-dark"
                       height="20"
@@ -175,16 +181,16 @@ const Topbar = (props) => {
                         localStorage.getItem("CurrentTheme") === "Dark"
                           ? LogoMark
                           : localStorage.getItem("ColorCode") === "Lavender"
-                          ? LavenderLogo
-                          : localStorage.getItem("ColorCode") === "Sapphire"
-                          ? SapphireLogo
-                          : localStorage.getItem("ColorCode") === "Teal"
-                          ? TealLogo
-                          : localStorage.getItem("ColorCode") === "Cyan"
-                          ? CyanLogo
-                          : localStorage.getItem("ColorCode") === "Goldenrod"
-                          ? GoldenrodLogo
-                          : LogoMark
+                            ? LavenderLogo
+                            : localStorage.getItem("ColorCode") === "Sapphire"
+                              ? SapphireLogo
+                              : localStorage.getItem("ColorCode") === "Teal"
+                                ? TealLogo
+                                : localStorage.getItem("ColorCode") === "Cyan"
+                                  ? CyanLogo
+                                  : localStorage.getItem("ColorCode") === "Goldenrod"
+                                    ? GoldenrodLogo
+                                    : LogoMark
                       }
                       alt="logo-sm-light"
                       height="20"
@@ -196,16 +202,16 @@ const Topbar = (props) => {
                         localStorage.getItem("CurrentTheme") === "Dark"
                           ? LogoMark
                           : localStorage.getItem("ColorCode") === "Lavender"
-                          ? LavenderLogo
-                          : localStorage.getItem("ColorCode") === "Sapphire"
-                          ? SapphireLogo
-                          : localStorage.getItem("ColorCode") === "Teal"
-                          ? TealLogo
-                          : localStorage.getItem("ColorCode") === "Cyan"
-                          ? CyanLogo
-                          : localStorage.getItem("ColorCode") === "Goldenrod"
-                          ? GoldenrodLogo
-                          : LogoMark
+                            ? LavenderLogo
+                            : localStorage.getItem("ColorCode") === "Sapphire"
+                              ? SapphireLogo
+                              : localStorage.getItem("ColorCode") === "Teal"
+                                ? TealLogo
+                                : localStorage.getItem("ColorCode") === "Cyan"
+                                  ? CyanLogo
+                                  : localStorage.getItem("ColorCode") === "Goldenrod"
+                                    ? GoldenrodLogo
+                                    : LogoMark
                       }
                       alt="logo-light"
                       height="20"
@@ -214,7 +220,7 @@ const Topbar = (props) => {
                 </Link>
               </div>
             </div>
-            <div className="col-sm-2">
+            {window.innerWidth>=600 &&<div className="col-sm-2">
               <div className="d-flex">
                 <div className="d-lg-block">
                   <div className="d-lg-inline-block ms-1">
@@ -232,28 +238,28 @@ const Topbar = (props) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>}
             <div className="col-sm-6 d-flex align-items-center justify-content-center">
-              
-                <div className="d-inline-block">
-                  <h2
-                    className="heading-menu-title"
-                    style={{ fontSize: "14px" , margin:"0"}}
-                  >
-                    {BrandName ? (
-                      <>
-                        {fullNameBrand} -{" "}
-                        <span style={{ color: "#d6ff41", fontWeight: 900 }}>
-                          {KPIName}
-                        </span>
-                      </>
-                    ) : (
-                        <span style={{margin:0}}>Portfolio Landscape</span>
-                      
-                    )}
-                  </h2>
-                </div>
-            
+
+              <div className="d-inline-block">
+                <h2
+                  className="heading-menu-title"
+                  style={{ fontSize: "14px", margin: "0" }}
+                >
+                  {BrandName ? (
+                    <>
+                      {fullNameBrand} -{" "}
+                      <span style={{ color: "#d6ff41", fontWeight: 900 }}>
+                        {KPIName}
+                      </span>
+                    </>
+                  ) : (
+                    <span style={{ margin: 0 }}>Portfolio Landscape</span>
+
+                  )}
+                </h2>
+              </div>
+
             </div>
             <div className="col-sm-3 d-flex align-items-center justify-content-end">
               <div className="d-flex align-items-center">
@@ -284,6 +290,17 @@ const Topbar = (props) => {
                     />
                   </button>
                 ) : null} */}
+
+             {window.innerWidth>=600 &&  <div
+                  onClick={() => navigate("/gpt")}
+                  style={{
+                    color: "#d6ff41",
+                    fontSize: "0.9rem",
+                    cursor: "pointer",
+                  }}
+                >
+                  Skewb GPT
+                </div>}
                 <div
                   style={{
                     zIndex: "10000",
@@ -294,26 +311,17 @@ const Topbar = (props) => {
                 >
                   {true && <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} duration={0.3} />}
                 </div>
-                <div
-                  onClick={() => navigate("/gpt")}
-                  style={{
-                    color: "#d6ff41",
-                    fontSize: "0.9rem",
-                    cursor: "pointer",
-                  }}
-                >
-                  Skewb GPT
-                </div>
+
               </div>
             </div>
           </div>
-        </div>
+        
       </header>
-      {/* {isOpen && (
-        <div style={{ padding: "0px", textAlign: "center" }}>
-          <h1 style={{ color: "white" }}>Hello World</h1>
-        </div>
-      )} */}
+      {
+       isOpen?
+        BrandDetails.id !== "" ? <DetailsPopUp DetailsId={DetailsId} setDetailsId={setDetailsId} Details={Details} setDetails={setDetails} />
+          : null:null
+      }
     </div>
   );
 };

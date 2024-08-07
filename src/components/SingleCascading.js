@@ -381,7 +381,7 @@ const CascaderWrapper = ({ data, match,setGetBrand }) => {
   }, [nameList]);
 
   useEffect(() => {
-    const pathSegments = match.split("-");
+    const pathSegments = match?.split("-");
     const newPath = pathSegments.map((segment, index) =>
       pathSegments.slice(0, index + 1).join("-")
     );

@@ -4,6 +4,7 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 
 const CustomSelect = ({ value, onChange, options = [] }) => {
+  console.log("options ",options);
   const [selectedValue, setSelectedValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredOption, setHoveredOption] = useState(null);

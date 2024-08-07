@@ -11,11 +11,11 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
    <GoogleOAuthProvider clientId={CLIENT_ID}>
       <App />
     </GoogleOAuthProvider>
   
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 

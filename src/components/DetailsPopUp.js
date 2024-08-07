@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect ,useContext} from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "../Axios";
 import Loader from "./Loader";
@@ -7,18 +7,22 @@ import { Link } from "react-router-dom";
 // import PopUp from "./PopUp"  ;
 import CustomSelection from "./CustomSelect.js"
 import CascaderWrapper from "./SingleCascading.js";
+import appContext from "../context/appContext";
 
 
 const DetailsPopUp = (props) => {
-
-  console.log("DetailPopUp")
   // console.log("props.Data: ", props.Data);
   const navigate = useNavigate();
   const DivRef = useRef(null);
+  const mainDef=useRef(null);
 
   const casRef = useRef(null);
 
   const [divWidth, setDivWidth] = useState("");
+
+  const context=useContext(appContext);
+  const {isOpen,setIsOpen}=context;
+
   // console.log("divWidth: ", divWidth);
 
   useLayoutEffect(() => {
@@ -51,11 +55,12 @@ const DetailsPopUp = (props) => {
   const [tag2, settag2] = useState("");
   const [tag_unit2, settag_unit2] = useState("");
   const [tag_val2, settag_val2] = useState("");
-
+  
   const [Redirect, setRedirect] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setIsOpenPopup] = useState(false);
 
   const [getBrand, setGetBrand] = useState("");
+  
   const [BrandFullName, setBrandFullName] = useState("");
 
 
@@ -82,77 +87,7 @@ const DetailsPopUp = (props) => {
     }
   }, [getBrand]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    if (props.Details.hirarchy_level !== "" && props.Details.name !== "") {
-      const payload = {
-        level: props.Details.hirarchy_level,
-        name: props.Details.id,
-        // "name": getBrand.value
-      };
-
-      setLoader(true);
-      axios
-        .post("get_kpi_tools/", {level: 0, name: "org"}, {
-          signal: controller.signal
-        })
-        .then((response) => {
-          if (response.data.error === 1) {
-            toast.error(response.data.erroMsg, {
-              position: toast.POSITION.TOP_LEFT,
-            });
-          } else {
-            console.log(" response.data.data.data[0].analysis_tools ",response.data.data.data[0].analysis_tools)
-            setKPIAll(response.data.data.data);
-            setKPI(response.data.data.data[0].kpi_short_code);
-            setKPIName(response.data.data.data[0].kpi_display_name);
-            setAnalyticsToolAll(response.data.data.data[0].analysis_tools);
-            setAnalyticsTool(response.data.data.data[0].analysis_tools[0].value);
-            settag1(response.data.data.data[0].tag1);
-            settag_unit1(response.data.data.data[0].tag_unit1);
-            settag_val1(response.data.data.data[0].tag_val1);
-            settag2(response.data.data.data[0].tag2);
-            settag_unit2(response.data.data.data[0].tag_unit2);
-            settag_val2(response.data.data.data[0].tag_val2);
-          }
-          setLoader(false);
-        })
-        .catch((data) => {
-          setLoader(false);
-        });
-    }
-
-    return () => {
-      controller.abort();
-    };
-  }, [props.Details, getBrand]);
-
-  const KPIHandler = (e) => {
-    const value = e.target.value;
-    setKPI(value);
-
-    for (var i = 0; i < KPIAll.length; i++) {
-      if (KPIAll[i].kpi_short_code === value) {
-        settag_unit1(KPIAll[i].tag_unit1);
-        settag_val1(KPIAll[i].tag_val1);
-        settag2(KPIAll[i].tag2);
-        settag_unit2(KPIAll[i].tag_unit2);
-        settag_val2(KPIAll[i].tag_val2);
-
-        setKPIName(KPIAll[i].kpi_display_name);
-        setAnalyticsToolAll(KPIAll[i].analysis_tools);
-        setAnalyticsTool(KPIAll[i].analysis_tools[0].value);
-        break;
-      }
-    }
-
-    setKPI(value);
-  };
-
-  // useEffect(()=>{
-
-  // }, [props.Details.id])
+ 
 
   const SubmitAnalyse = () => {
     // console.log("Clicked on Analyse: ")
@@ -309,14 +244,15 @@ const DetailsPopUp = (props) => {
     }
   }, 0);
 
- 
+  
 
   const handleFilterClick = (event) => {
-    if (DivRef.current && !DivRef.current.contains(event.target)) {
-      // props.setShow(false);
+    if (mainDef.current && !mainDef.current.contains(event.target)) {
+        // setIsOpen(false);
       props.setDetailsId("");
-      if (typeof props.show !== "undefined") {
-        props.setShow(false);
+      if (typeof isOpen !== "undefined") {
+        setIsOpen(false);
+        console.log("ISOPEN false ");
       }
     }
   };
@@ -348,8 +284,8 @@ const DetailsPopUp = (props) => {
         };
 
         try {
-          const response = await axios.post("kpi_option/", {level: 0, name: "org"});
-          console.log("kpi option: ", response.data.data);
+          const response = await axios.post("get_kpi_tools/", payload);
+          // console.log("kpi option: ", response.data.data);
           setAllKPI(response.data.data);
           setGetKPI(response.data.data[0]?.children[0]);
         } catch (error) {
@@ -362,10 +298,12 @@ const DetailsPopUp = (props) => {
   }, [props.Details, getBrand]); // Add props.Details as a dependency to run the effect when it changes
 
   useEffect(() => {
+    console.log("getKPI ",getKPI);
     if(getKPI !== "") {
       settag_unit1(getKPI?.tag_unit1);
       settag_val1(getKPI?.tag_val1);
       settag2(getKPI?.tag2);
+      settag1(getKPI?.tag1);
       settag_unit2(getKPI?.tag_unit2);
       settag_val2(getKPI?.tag_val2);
       setKPIName(getKPI?.kpi_display_name);
@@ -378,7 +316,27 @@ const DetailsPopUp = (props) => {
   }, [getKPI, getBrand])
 
 
- 
+  // useEffect(() => {
+  //    if (DivRef.current && isOpen===false) {
+
+  //     setTimeout(()=>{
+  //       console.log("Scrolling to top",DivRef.current);
+  //       // setDivDisplay('none');
+  //       DivRef.current.scrollIntoView({ behavior: "instant", block: "end" }); 
+  //     },100)
+
+
+
+  //   }
+  //   // if(isOpen)
+  //   // {
+  //   //   setDivDisplay('block');
+  //   // }
+  // }, [isOpen]);
+
+console.log("isOpen ",isOpen);
+
+
   return (
     <>
       {loader ? <Loader /> : null}
@@ -388,29 +346,31 @@ const DetailsPopUp = (props) => {
           position: "absolute",
           width: "100%",
           height: "100vh",
-          
+
           background: "#00000000",
           zIndex: "999",
           // border: "1px solid red"
         }}
+        
         onClick={(e) => {
           handleFilterClick(e);
         }}
       >
         <div
-           className={'right-bar'} 
-          ref={DivRef}
+          className={'right-bar'}
+          ref={mainDef}
           style={{
-          width:'300px',
-          maxWidth:'400px',
-          // right: props.show ? '0' : '-350px',
-          // transition: 'right .3s ease-in-out'
+            width: '300px',
+            maxWidth: '400px',
+            right: isOpen ? '0' : '-350px',
+
+            transition: 'right .4s ease-in-out'
 
           }}
         >
-          <div data-simplebar className="h-100" style={{ height: "100%", overflowY: "auto", }}>
-            <div className="rightbar-title d-flex align-items-center pt-4 pb-2">
-            
+          <div data-simplebar className="h-100" style={{ height: "100%", overflowY: "scroll", }}>
+            <div className="rightbar-title d-flex align-items-center pt-4 pb-2" ref={DivRef}>
+
             </div>
 
             <div className="row justify-content-center">
@@ -427,9 +387,9 @@ const DetailsPopUp = (props) => {
               </div>
               <div
                 className="col-sm-12 text-center"
-                
+
               >
-                <h4 className="h-menu-user-name" style={{  }}>
+                <h4 className="h-menu-user-name" style={{}}>
                   {props.Details.name}
                 </h4>
               </div>
@@ -519,6 +479,14 @@ const DetailsPopUp = (props) => {
                         );
                       })}
                     </select> */}
+                    {/* <CascaderWrapper
+                      data={[AllBrands]}
+                      divWidth={divWidth}
+                      setGetBrand={setGetBrand}
+                      match={props.Details.id}
+                      setDetailsId={props.setDetailsId}
+                      setDetails={props.setDetails}
+                    /> */}
                     {getKPI !== "" && matchKPI && 
                       <CascaderWrapper
                         key={matchKPI}
@@ -529,14 +497,14 @@ const DetailsPopUp = (props) => {
                   </div>
                   {/* for kpi selection */}
                 </div>
-              
-                  <div className="col-12">
-                    <h3>
-                      <label className="login-lable h-menu-label">
-                        Select Analytics Tool
-                      </label>
-                    </h3>
-                    {/* <select  onFocus={(e) => e.target.size = 1}
+
+                <div className="col-12">
+                  <h3>
+                    <label className="login-lable h-menu-label">
+                      Select Analytics Tool
+                    </label>
+                  </h3>
+                  {/* <select  onFocus={(e) => e.target.size = 1}
                              onBlur={(e) => e.target.size = 1}
                       className="form-select"
                       value={AnalyticsTool}
@@ -551,14 +519,14 @@ const DetailsPopUp = (props) => {
                         );
                       })}
                     </select> */}
-                    <CustomSelection
-                     value={AnalyticsTool}
-                     onChange={(e) => setAnalyticsTool(e.target.value)}
-                     options={AnalyticsToolAll}
-                    />
-                    
-                  </div>
-                
+                  <CustomSelection
+                    value={AnalyticsTool}
+                    onChange={(e) => setAnalyticsTool(e.target.value)}
+                    options={AnalyticsToolAll}
+                  />
+
+                </div>
+
                 <div className="form-group row my-2 text-center">
                   <div className="col-12 mt-3">
                     <button
@@ -573,15 +541,37 @@ const DetailsPopUp = (props) => {
               </div>
             </div>
 
-            <footer className="right-bar-footer" >
+            <footer className="right-bar-footer"  >
               {/* onClick={()=>{
                   window.Change_Theme()
                 }} */}
+
+              {window.innerWidth < 600 && <div className="row py-2 ">
+                <div className="col-sm-12">
+                  <Link to="/gpt" className="h-menu-link">
+                    <p className="mb-0">
+                      <u>Skewb GPT</u>
+                    </p>
+                  </Link>
+                </div>
+              </div>
+              }
+              {window.innerWidth < 600 &&
+                <div className="row py-2 ">
+                  <div className="col-sm-12">
+                    <Link to="/portfolio" className="h-menu-link">
+                      <p className="mb-0">
+                        <u>Back To Portfolio Landscape</u>
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+              }
               <div className=" gautam" >
                 {localStorage.getItem("is_superuser") === "1" ? (
                   <div className="row py-2 ">
                     <div className="col-sm-12">
-                      <Link to="/users" className="h-menu-link">
+                      <Link to="#" className="h-menu-link">
                         <p className="mb-0">
                           <u>User Management </u>
                         </p>
@@ -591,7 +581,7 @@ const DetailsPopUp = (props) => {
                 ) : null}
                 {/* <div className="row py-2 ">
                   <div className="col-sm-12" onClick={() => {
-                    setShowPopup(true);
+                    setIsOpenPopup(true);
                   }}>
                     <Link to="" className="h-menu-link">
                       <p className="mb-0">
@@ -603,7 +593,7 @@ const DetailsPopUp = (props) => {
 
                 <div className="row py-2 ">
                   <div className="col-sm-12">
-                    <Link to="/user_profile" className="h-menu-link">
+                    <Link to="#" className="h-menu-link">
                       <p className="mb-0">
                         <u>Theme</u>
                       </p>
@@ -618,18 +608,20 @@ const DetailsPopUp = (props) => {
                       onClick={(e) => e.preventDefault()}
                     >
                       <p className="mb-0">
-                        <u onClick={() => setShowPopup(true)}>
+                        <u onClick={() => setIsOpenPopup(true)}>
                           Contact Support
                         </u>
                       </p>
                     </Link>
                   </div>
                 </div>
-                <div className="row py-2">
+                <div className="row py-2"
+                >
                   <div className="col-sm-12">
-                    <Link to="/logout" className="h-menu-link">
+                    <Link to="/login" className="h-menu-link">
                       <p className="mb-0">
-                        <u>Logout</u>
+                        <u >Logout</u>
+
                       </p>
                     </Link>
                   </div>
@@ -642,7 +634,7 @@ const DetailsPopUp = (props) => {
       </div>
       {/* {showPopup && (
         <PopUp
-          setShowPopup={setShowPopup}
+          setIsOpenPopup={setIsOpenPopup}
           width={"300px"}
           height={"160px"}
           children={<h3 style={{ color: "#d6ff41" }}>info@skewb.ai</h3>}
